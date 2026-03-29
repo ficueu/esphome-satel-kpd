@@ -13,13 +13,13 @@ Komponent dla ESPHome pozwalający na dwukierunkową komunikację z centralą al
 
 ## Hardware
 
-Magistrala manipulatora działa na logice **11V-16V** więc niezbędne jest zastosowanie konwertera poziomów logicznych.
+Magistrala manipulatora działa na logice **10-16V** więc niezbędne jest zastosowanie konwertera poziomów logicznych.
 
-### Wariant 1: Podstawowy (tylko odczyt):
+### Wariant 1: podstawowy (tylko odczyt):
 Niezbędny będzie minimum 2 kanałowy konwerter poziomów logicznych akceptujący napięcia do 16V (np. **Pololu 2595**). Konwerter obniży napięcia ~12V z szyn zegara (CLK) i danych (DATA) do poziomu 3.3V akceptowanego przez ESP. 
 
-### Wariant 2: Pełny (odczyt + emulacja)
-Aby wysyłać sygnały do centrali, musimy mieć element wykonawczy, który będzie zwierał sygnał DATA do masy - wymagany będzie np. układu z **tranzystorem MOSFET** oraz **rezystorem 100Ω**.
+### Wariant 2: pełny (odczyt + emulacja)
+Aby wysyłać sygnały do centrali, musimy dodatkowo mieć element wykonawczy, który będzie zwierał sygnał DATA do masy - wymagany będzie np. układu z **tranzystorem MOSFET** oraz **rezystorem 100Ω**.
 
 Powstał też dedykowany układ zawierającego konwerter poziomów logicznych oraz moduł odpowiedzialny za nadawanie sygnałów.
 
