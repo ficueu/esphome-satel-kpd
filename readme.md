@@ -144,7 +144,7 @@ binary_sensor:
 
 ## Karta manipulatora dla lovelace
 
-https://github.com/ficueu/esphome-satel-kpd/examples/lovelace_card.yaml
+https://github.com/ficueu/esphome-satel-kpd/blob/main/examples/lovelace_card.yaml
 
 <img src="https://github.com/ficueu/esphome-satel-kpd/blob/main/docs/lovelace_card.png" height="300">
 
@@ -152,7 +152,7 @@ https://github.com/ficueu/esphome-satel-kpd/examples/lovelace_card.yaml
 
 ## Pełna konfiguracja
 
-https://github.com/ficueu/esphome-satel-kpd/examples/full_config.yaml
+https://github.com/ficueu/esphome-satel-kpd/blob/main/examples/full_config.yaml
 
 ---
 
