@@ -1,0 +1,212 @@
+type: vertical-stack
+cards:
+  - show_name: true
+    show_icon: true
+    show_state: false
+    type: glance
+    columns: 8
+    state_color: true
+    entities:
+      - entity: binary_sensor.esp32_satel_wejscie_1
+        icon: mdi:motion-sensor
+        name: "1"
+      - entity: binary_sensor.esp32_satel_wejscie_2
+        icon: mdi:motion-sensor
+        name: "2"
+      - entity: binary_sensor.esp32_satel_wejscie_3
+        icon: mdi:motion-sensor
+        name: "3"
+      - entity: binary_sensor.esp32_satel_wejscie_4
+        icon: mdi:motion-sensor
+        name: "4"
+      - entity: binary_sensor.esp32_satel_wejscie_5
+        icon: mdi:motion-sensor
+        name: "5"
+      - entity: binary_sensor.esp32_satel_wejscie_6
+        icon: mdi:motion-sensor
+        name: "6"
+      - entity: binary_sensor.esp32_satel_wejscie_7
+        icon: mdi:motion-sensor
+        name: "7"
+      - entity: binary_sensor.esp32_satel_wejscie_8
+        icon: mdi:motion-sensor
+        name: "8"
+  - type: glance
+    columns: 6
+    state_color: true
+    show_state: false
+    entities:
+      - entity: binary_sensor.esp32_satel_czuwanie_strefa_a
+        name: Czuw. A
+        icon: mdi:shield-check
+      - entity: binary_sensor.esp32_satel_czuwanie_strefa_b
+        name: Czuw. B
+        icon: mdi:shield-check
+      - entity: binary_sensor.esp32_satel_alarm_strefa_a
+        name: Alarm A
+        icon: mdi:bell-ring
+      - entity: binary_sensor.esp32_satel_alarm_strefa_b
+        name: Alarm B
+        icon: mdi:bell-ring
+      - entity: binary_sensor.esp32_satel_awaria
+        name: Awaria
+        icon: mdi:alert
+      - entity: binary_sensor.esp32_satel_zasilanie
+        name: Zasil.
+        icon: mdi:power-plug
+  - type: grid
+    columns: 1
+    square: false
+    cards:
+      - type: entities
+        state_color: true
+        entities:
+          - entity: sensor.esp32_satel_odczytane_awarie
+            icon: mdi:alert
+            name: Awarie
+  - square: false
+    type: grid
+    columns: 4
+    cards:
+      - show_name: true
+        show_icon: false
+        type: button
+        name: "1"
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_satel_press_sequence
+          data:
+            sequence: "1"
+      - type: button
+        name: "2"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "2"
+      - type: button
+        name: "3"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "3"
+      - show_name: true
+        show_icon: true
+        type: button
+        name: Czuwanie A
+        icon: mdi:shield-lock
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_satel_press_sequence
+          data:
+            sequence: 1#
+          target: {}
+        show_state: false
+      - type: button
+        name: "4"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "4"
+      - type: button
+        name: "5"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "5"
+      - type: button
+        name: "6"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "6"
+      - show_name: true
+        show_icon: true
+        type: button
+        name: Czuwanie B
+        icon: mdi:shield-lock
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_satel_press_sequence
+          data:
+            sequence: 2#
+          target: {}
+        show_state: false
+      - type: button
+        name: "7"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "7"
+      - type: button
+        name: "8"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "8"
+      - type: button
+        name: "9"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "9"
+      - show_name: true
+        show_icon: true
+        type: button
+        name: Sprawdź awarie
+        icon: mdi:wrench-clock
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_satel_check_trouble
+      - type: button
+        name: "*"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "*"
+      - type: button
+        name: "0"
+        show_icon: false
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "0"
+      - show_name: true
+        show_icon: false
+        type: button
+        name: "#"
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_sate_press_sequence
+          data:
+            sequence: "#"
+      - show_name: true
+        show_icon: true
+        type: button
+        icon: mdi:shield-lock-open
+        tap_action:
+          action: perform-action
+          perform_action: esphome.esp32_satel_press_sequence
+          data:
+            sequence: 1234#
+          target: {}
+        show_state: false
+        name: Wyłącz

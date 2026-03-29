@@ -1,0 +1,220 @@
+esphome:
+  name: "esp32-satel"
+  friendly_name: "esp32-satel"
+  platformio_options:
+    board_build.flash_mode: dio
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+  reboot_timeout: 0s
+  services:
+    - service: press_sequence
+      variables:
+        sequence: string
+      then:
+        - lambda: 'id(my_satel).press_sequence(sequence);'
+    - service: check_trouble
+      then:
+        - lambda: 'id(my_satel).trigger_trouble_check();'
+
+external_components:
+  - source: github://ficueu/esphome-satel-kpd
+    components: [ satel_kpd ]
+
+satel_kpd:
+  id: my_satel
+  data_pin: GPIO4
+  ckl_pin: GPIO3
+  prs_pin: GPIO5
+  simulated_keypad: false
+  trouble_lang: pl
+
+
+binary_sensor:
+  - platform: satel_kpd
+    satel_kpd_id: my_satel   
+    armed_a:
+      name: "Czuwanie Strefa A"
+    armed_b:
+      name: "Czuwanie Strefa B"
+    alarm_a:
+      name: "Alarm Strefa A"
+    alarm_b:
+      name: "Alarm Strefa B"
+    buzzer:
+      name: "Buzzer"
+    phone:
+      name: "Telefon"
+    trouble:
+      name: "Awaria"
+      filters:
+        - delayed_off: 0.6s
+    power:
+      name: "Zasilanie"
+    input_1:
+      name: "Wejście 1"
+    input_2:
+      name: "Wejście 2"
+    input_3:
+      name: "Wejście 3"
+    input_4:
+      name: "Wejście 4"
+    input_5:
+      name: "Wejście 5"
+    input_6:
+      name: "Wejście 6"
+    input_7:
+      name: "Wejście 7"
+    input_8:
+      name: "Wejście 8"
+
+    bit_0:
+      name: "Bit 00"
+    bit_1:
+      name: "Bit 01"
+    bit_2:
+      name: "Bit 02"
+    bit_3:
+      name: "Bit 03"
+    bit_4:
+      name: "Bit 04"
+    bit_5:
+      name: "Bit 05"
+    bit_6:
+      name: "Bit 06"
+    bit_7:
+      name: "Bit 07"
+    bit_8:
+      name: "Bit 08"
+    bit_9:
+      name: "Bit 09"
+    bit_10:
+      name: "Bit 10"
+    bit_11:
+      name: "Bit 11"
+    bit_12:
+      name: "Bit 12"
+    bit_13:
+      name: "Bit 13"
+    bit_14:
+      name: "Bit 14"
+    bit_15:
+      name: "Bit 15"
+    bit_16:
+      name: "Bit 16"
+    bit_17:
+      name: "Bit 17"
+    bit_18:
+      name: "Bit 18"
+    bit_19:
+      name: "Bit 19"
+    bit_20:
+      name: "Bit 20"
+    bit_21:
+      name: "Bit 21"
+    bit_22:
+      name: "Bit 22"
+    bit_23:
+      name: "Bit 23"
+    bit_24:
+      name: "Bit 24"
+    bit_25:
+      name: "Bit 25"
+    bit_26:
+      name: "Bit 26"
+    bit_27:
+      name: "Bit 27"
+    bit_28:
+      name: "Bit 28"
+    bit_29:
+      name: "Bit 29"
+    bit_30:
+      name: "Bit 30"
+    bit_31:
+      name: "Bit 31"
+
+text_sensor:
+  - platform: satel_kpd
+    satel_kpd_id: my_satel
+    trouble_text:
+      name: "Odczytane Awarie"
+
+button:
+  - platform: template
+    name: "Sprawdź Awarie (Przytrzymaj 7)"
+    on_press:
+      - lambda: 'id(my_satel).trigger_trouble_check();'
+
+  - platform: template
+    name: "Uzbrój Alarm (1234#)"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("1234#");'
+
+  - platform: template
+    name: "Klawisz 1"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("1");'
+
+  - platform: template
+    name: "Klawisz 2"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("2");'
+
+  - platform: template
+    name: "Klawisz 3"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("3");'
+  - platform: template
+    name: "Klawisz 4"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("4");'
+
+  - platform: template
+    name: "Klawisz 5"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("5");'
+
+  - platform: template
+    name: "Klawisz 6"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("6");'
+
+  - platform: template
+    name: "Klawisz 7"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("7");'
+
+  - platform: template
+    name: "Klawisz 8"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("8");'
+
+  - platform: template
+    name: "Klawisz 9"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("9");'
+
+  - platform: template
+    name: "Klawisz 0"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("0");'
+
+  - platform: template
+    name: "Klawisz gwiazdka"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("*");'
+
+  - platform: template
+    name: "Klawisz krzyżyk"
+    on_press:
+      - lambda: 'id(my_satel).press_sequence("#");'
