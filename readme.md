@@ -21,7 +21,6 @@ Niezbędny będzie minimum 2 kanałowy konwerter poziomów logicznych akceptują
 ### Wariant 2: Pełny (odczyt + emulacja)
 Aby wysyłać sygnały do centrali, musimy mieć element wykonawczy, który będzie zwierał sygnał DATA do masy - wymagany będzie np. układu z **tranzystorem MOSFET** oraz **rezystorem 100Ω**.
 
-**Dedykowany Moduł:**
 Powstał też dedykowany układ zawierającego konwerter poziomów logicznych oraz moduł odpowiedzialny za nadawanie sygnałów.
 
 <img src="https://github.com/ficueu/esphome-satel-kpd/blob/main/docs/konwerter.jpg" height="300">
@@ -29,8 +28,6 @@ Powstał też dedykowany układ zawierającego konwerter poziomów logicznych or
 ---
 
 ## Podstawowa konfiguracja
-
-Konfiguracja komponentu:
 
 ```
 satel_kpd:
