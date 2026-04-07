@@ -9,6 +9,11 @@
 namespace esphome {
 namespace satel_kpd {
 
+enum SatelVariant {
+  SATEL_VARIANT_CA6,
+  SATEL_VARIANT_CA10
+};
+
 class SatelKPD : public Component {
  public:
   void setup() override;
@@ -23,6 +28,10 @@ class SatelKPD : public Component {
   void set_trouble_lang(const std::string &lang) {
     if (lang == "pl") trouble_lang_pl_ = true;
     else trouble_lang_pl_ = false;
+  }
+  void set_variant(const std::string &variant) {
+    if (variant == "ca10") variant_ = SATEL_VARIANT_CA10;
+    else variant_ = SATEL_VARIANT_CA6;
   }
 
   void set_bit_sensor(uint8_t index, binary_sensor::BinarySensor *sensor) {
@@ -46,6 +55,10 @@ class SatelKPD : public Component {
   void set_input_6_sensor(binary_sensor::BinarySensor *s) { input_sensors_[5] = s; }
   void set_input_7_sensor(binary_sensor::BinarySensor *s) { input_sensors_[6] = s; }
   void set_input_8_sensor(binary_sensor::BinarySensor *s) { input_sensors_[7] = s; }
+  void set_input_9_sensor(binary_sensor::BinarySensor *s) { input_sensors_[8] = s; }
+  void set_input_10_sensor(binary_sensor::BinarySensor *s) { input_sensors_[9] = s; }
+  void set_input_11_sensor(binary_sensor::BinarySensor *s) { input_sensors_[10] = s; }
+  void set_input_12_sensor(binary_sensor::BinarySensor *s) { input_sensors_[11] = s; }
 
   void set_trouble_text_sensor(text_sensor::TextSensor *s) { trouble_text_sensor_ = s; }
 
@@ -66,6 +79,7 @@ class SatelKPD : public Component {
   bool simulated_keypad_{false};
   bool trouble_lang_pl_{false};
   bool has_prs_pin_{false};
+  SatelVariant variant_{SATEL_VARIANT_CA6};
 
   binary_sensor::BinarySensor *bit_sensors_[32]{nullptr};
   binary_sensor::BinarySensor *armed_a_sensor_{nullptr};
@@ -76,7 +90,7 @@ class SatelKPD : public Component {
   binary_sensor::BinarySensor *buzzer_sensor_{nullptr};
   binary_sensor::BinarySensor *phone_sensor_{nullptr};
   binary_sensor::BinarySensor *power_sensor_{nullptr};
-  binary_sensor::BinarySensor *input_sensors_[8]{nullptr};
+  binary_sensor::BinarySensor *input_sensors_[12]{nullptr};
   
   text_sensor::TextSensor *trouble_text_sensor_{nullptr};
 

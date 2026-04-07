@@ -25,6 +25,10 @@ NAMED_SENSORS = {
     'input_6': 'set_input_6_sensor',
     'input_7': 'set_input_7_sensor',
     'input_8': 'set_input_8_sensor',
+    'input_9': 'set_input_9_sensor',
+    'input_10': 'set_input_10_sensor',
+    'input_11': 'set_input_11_sensor',
+    'input_12': 'set_input_12_sensor',
 }
 
 schema_dict = {

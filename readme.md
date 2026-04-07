@@ -1,10 +1,10 @@
 # Satel-KPD Custom Component for ESPHome
 
-Komponent dla ESPHome pozwalający na dwukierunkową komunikację z centralą alarmową **CA-6** (oraz potencjalnie innymi) poprzez magistralę manipulatora **KPD, COM, DATA, CLK**.
+Komponent dla ESPHome pozwalający na dwukierunkową komunikację z centralą alarmową **CA-6** lub **CA-10** (oraz potencjalnie innymi) poprzez magistralę manipulatora **KPD, COM, DATA, CLK**.
 
 ### Funkcje:
 * odczyt stanów wejść Zx,
-* odczyt diod statusowych (zasilanie, telefon, awaria, buzzer, czuwanie a/b, alarm a/b),
+* odczyt diod statusowych (zasilanie, telefon, awaria, buzzer, czuwanie, alarm),
 * emulowanie manipulatora,
 * automatyczny odczyt awarii,
 * załączanie/wyłączanie czuwania.
@@ -37,6 +37,7 @@ satel_kpd:
   prs_pin: GPIO5
   simulated_keypad: false
   trouble_lang: pl
+  variant: ca6
 ```
 
 * **data_pin** (Wymagany, Pin): Pin wejściowy odczytujący dane z magistrali (DATA). 
@@ -44,6 +45,7 @@ satel_kpd:
 * **prs_pin** (Opcjonalny, Pin): Pin wyjściowy sterujący tranzystorem MOSFET. Wymagany do wysyłania komend.
 * **simulated_keypad** (Opcjonalny, boolean): Włącza tryb emulacji klawiatury. Komponent będzie wysyłał potwierdzenia do centrali udając fizyczny manipulator. Wymaga podłączenia pinu `prs_pin`. Domyślnie `false`.
 * **trouble_lang** (Opcjonalny, string): Język wypluwanych awarii dla sensora tekstowego. Obsługiwane to `en` oraz `pl`. Domyślnie `en`.
+* **variant** (Opcjonalny, string): Wybór wariantu centrali, co wpływa na maskowanie wejść i sensorów. Obsługiwane to `ca6` oraz `ca10`. Domyślnie `ca6`.
 
 ---
 
@@ -66,7 +68,7 @@ satel_kpd:
   prs_pin: GPIO5
   simulated_keypad: false
   trouble_lang: pl
-
+  variant: ca6
 
 api:
   reboot_timeout: 0s
@@ -156,8 +158,34 @@ https://github.com/ficueu/esphome-satel-kpd/blob/main/examples/full_config.yaml
 
 ---
 
-## Plany na rozbudowę
-Obecna implementacja została zoptymalizowana w oparciu o protokół dla centrali CA-6. W kolejnych krokach będę chciał sprawdzić kompatybilność z:
-* [ ] **CA-10**,
-* [ ] **Perfecta**,
-* [ ] **Integra**.
+## Changelog
+### v1.1.0:
+* dodano wsparcie dla ESP8266,
+* dodano obsługę central CA-10 (zmienna **variant**),
+* zwiększono pulę odczytywanych wejść z 8 do 12 (CA-10),
+* wprowadzono auto-ładowanie komponentów binary_sensor i text_sensor,
+* poprawiono przykład dla lovelace.
+
+---
+
+## Testy / plany na rozbudowę
+### CA-6:
+* [x] manipulator,
+* [x] wejścia 1-8,
+* [x] strefy alarmu (A/B),
+* [x] strefy czuwania (A/B),
+* [x] sprawdzanie awarii,
+
+### CA-10:
+* [x] manipulator,
+* [x] wejścia 1-12,
+* [ ] wejścia 13-16,
+* [x] strefy alarmu (A),
+* [ ] strefy alarmu (B/C/D),
+* [x] strefy czuwania (A),
+* [ ] strefy czuwania (B/C/D),
+* [x] sprawdzanie awarii,
+
+### Inne centrale:
+* [ ] Perfecta - zupełnie inny protokół komunikacji, brak dostępu do centrali wraz z manipulatorem do testów "na stole".
+* [ ] Integra - nie podjęto próby - brak manipulatora do testów do testów "na stole".

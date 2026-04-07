@@ -36,7 +36,7 @@ void SatelKPD::setup() {
 
 void SatelKPD::press_sequence(std::string sequence) {
   if (!this->has_prs_pin_) {
-    ESP_LOGW(TAG, "Pin PRS nie jest skonfigurowany. Wysylanie komend zostalo zablokowane.");
+    ESP_LOGW(TAG, "PRS Pin: NOT CONFIGURED (Emulation disabled)");
     return;
   }
 
@@ -74,7 +74,7 @@ void SatelKPD::press_sequence(std::string sequence) {
 
 void SatelKPD::trigger_trouble_check() {
   if (!this->has_prs_pin_) {
-    ESP_LOGW(TAG, "Pin PRS nie jest skonfigurowany. Diagnostyka zostala zablokowana.");
+    ESP_LOGW(TAG, "PRS Pin: NOT CONFIGURED (Emulation disabled)");
     return;
   }
 

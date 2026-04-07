@@ -82,7 +82,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "2"
       - type: button
@@ -90,7 +90,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "3"
       - show_name: true
@@ -110,7 +110,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "4"
       - type: button
@@ -118,7 +118,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "5"
       - type: button
@@ -126,7 +126,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "6"
       - show_name: true
@@ -146,7 +146,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "7"
       - type: button
@@ -154,7 +154,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "8"
       - type: button
@@ -162,7 +162,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "9"
       - show_name: true
@@ -178,7 +178,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "*"
       - type: button
@@ -186,7 +186,7 @@ cards:
         show_icon: false
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "0"
       - show_name: true
@@ -195,7 +195,7 @@ cards:
         name: "#"
         tap_action:
           action: perform-action
-          perform_action: esphome.esp32_sate_press_sequence
+          perform_action: esphome.esp32_satel_press_sequence
           data:
             sequence: "#"
       - show_name: true

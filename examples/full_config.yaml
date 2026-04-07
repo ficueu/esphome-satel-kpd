@@ -38,6 +38,7 @@ satel_kpd:
   prs_pin: GPIO5
   simulated_keypad: false
   trouble_lang: pl
+  variant: ca6
 
 
 binary_sensor:
