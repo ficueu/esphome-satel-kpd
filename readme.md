@@ -159,7 +159,7 @@ https://github.com/ficueu/esphome-satel-kpd/blob/main/examples/full_config.yaml
 ---
 
 ## Changelog
-### v1.1.0:
+### v1.1:
 * dodano wsparcie dla ESP8266,
 * dodano obsługę central CA-10 (zmienna **variant**),
 * zwiększono pulę odczytywanych wejść z 8 do 12 (CA-10),
