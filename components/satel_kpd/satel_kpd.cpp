@@ -36,7 +36,7 @@ void SatelKPD::setup() {
 
 void SatelKPD::press_sequence(std::string sequence) {
   if (!this->has_prs_pin_) {
-    ESP_LOGW(TAG, "PRS Pin: NOT CONFIGURED (Emulation disabled)");
+    ESP_LOGW(TAG, "PRS pin is not configured. Sending commands is disabled.");
     return;
   }
 
@@ -74,7 +74,7 @@ void SatelKPD::press_sequence(std::string sequence) {
 
 void SatelKPD::trigger_trouble_check() {
   if (!this->has_prs_pin_) {
-    ESP_LOGW(TAG, "PRS Pin: NOT CONFIGURED (Emulation disabled)");
+    ESP_LOGW(TAG, "PRS pin is not configured. Trouble check procedure is disabled.");
     return;
   }
 
@@ -235,30 +235,52 @@ void SatelKPD::loop() {
       for (int i = 0; i < DATA_FRAME_SIZE; i++) {
         if (this->bit_sensors_[i] != nullptr) this->bit_sensors_[i]->publish_state(this->finalized_data_[i]);
       }
-      
-      if (this->armed_a_sensor_) this->armed_a_sensor_->publish_state(this->finalized_data_[7]);
-      if (this->armed_b_sensor_) this->armed_b_sensor_->publish_state(this->finalized_data_[5]);
-      if (this->alarm_a_sensor_) this->alarm_a_sensor_->publish_state(this->finalized_data_[3]);
-      if (this->alarm_b_sensor_) this->alarm_b_sensor_->publish_state(this->finalized_data_[1]);
-      if (this->trouble_sensor_) this->trouble_sensor_->publish_state(this->finalized_data_[19]);
-      if (this->buzzer_sensor_)  this->buzzer_sensor_->publish_state(this->finalized_data_[17]);
-      if (this->phone_sensor_)   this->phone_sensor_->publish_state(this->finalized_data_[21]);
-      if (this->power_sensor_)   this->power_sensor_->publish_state(this->finalized_data_[23]);
 
-      if (this->input_sensors_[0]) this->input_sensors_[0]->publish_state(this->finalized_data_[31]);
-      if (this->input_sensors_[1]) this->input_sensors_[1]->publish_state(this->finalized_data_[29]);
-      if (this->input_sensors_[2]) this->input_sensors_[2]->publish_state(this->finalized_data_[27]);
-      if (this->input_sensors_[3]) this->input_sensors_[3]->publish_state(this->finalized_data_[25]);
-      if (this->input_sensors_[4]) this->input_sensors_[4]->publish_state(this->finalized_data_[15]);
-      if (this->input_sensors_[5]) this->input_sensors_[5]->publish_state(this->finalized_data_[13]);
-      if (this->input_sensors_[6]) this->input_sensors_[6]->publish_state(this->finalized_data_[11]);
-      if (this->input_sensors_[7]) this->input_sensors_[7]->publish_state(this->finalized_data_[9]);
+      if (this->variant_ == SATEL_VARIANT_CA6) {
+        if (this->armed_a_sensor_) this->armed_a_sensor_->publish_state(this->finalized_data_[7]);
+        if (this->armed_b_sensor_) this->armed_b_sensor_->publish_state(this->finalized_data_[5]);
+        if (this->alarm_a_sensor_) this->alarm_a_sensor_->publish_state(this->finalized_data_[3]);
+        if (this->alarm_b_sensor_) this->alarm_b_sensor_->publish_state(this->finalized_data_[1]);
+        if (this->trouble_sensor_) this->trouble_sensor_->publish_state(this->finalized_data_[19]);
+        if (this->buzzer_sensor_)  this->buzzer_sensor_->publish_state(this->finalized_data_[17]);
+        if (this->phone_sensor_)   this->phone_sensor_->publish_state(this->finalized_data_[21]);
+        if (this->power_sensor_)   this->power_sensor_->publish_state(this->finalized_data_[23]);
+
+        if (this->input_sensors_[0]) this->input_sensors_[0]->publish_state(this->finalized_data_[31]);
+        if (this->input_sensors_[1]) this->input_sensors_[1]->publish_state(this->finalized_data_[29]);
+        if (this->input_sensors_[2]) this->input_sensors_[2]->publish_state(this->finalized_data_[27]);
+        if (this->input_sensors_[3]) this->input_sensors_[3]->publish_state(this->finalized_data_[25]);
+        if (this->input_sensors_[4]) this->input_sensors_[4]->publish_state(this->finalized_data_[15]);
+        if (this->input_sensors_[5]) this->input_sensors_[5]->publish_state(this->finalized_data_[13]);
+        if (this->input_sensors_[6]) this->input_sensors_[6]->publish_state(this->finalized_data_[11]);
+        if (this->input_sensors_[7]) this->input_sensors_[7]->publish_state(this->finalized_data_[9]);
+      } 
+      else if (this->variant_ == SATEL_VARIANT_CA10) {
+        if (this->armed_a_sensor_) this->armed_a_sensor_->publish_state(this->finalized_data_[21]);
+        if (this->alarm_a_sensor_) this->alarm_a_sensor_->publish_state(this->finalized_data_[23]);
+        if (this->trouble_sensor_) this->trouble_sensor_->publish_state(this->finalized_data_[19]);
+        if (this->buzzer_sensor_)  this->buzzer_sensor_->publish_state(this->finalized_data_[17]);
+
+        if (this->input_sensors_[0]) this->input_sensors_[0]->publish_state(this->finalized_data_[31]);
+        if (this->input_sensors_[1]) this->input_sensors_[1]->publish_state(this->finalized_data_[29]);
+        if (this->input_sensors_[2]) this->input_sensors_[2]->publish_state(this->finalized_data_[27]);
+        if (this->input_sensors_[3]) this->input_sensors_[3]->publish_state(this->finalized_data_[25]);
+        if (this->input_sensors_[4]) this->input_sensors_[4]->publish_state(this->finalized_data_[15]);
+        if (this->input_sensors_[5]) this->input_sensors_[5]->publish_state(this->finalized_data_[13]);
+        if (this->input_sensors_[6]) this->input_sensors_[6]->publish_state(this->finalized_data_[11]);
+        if (this->input_sensors_[7]) this->input_sensors_[7]->publish_state(this->finalized_data_[9]);
+        if (this->input_sensors_[8]) this->input_sensors_[8]->publish_state(this->finalized_data_[7]);
+        if (this->input_sensors_[9]) this->input_sensors_[9]->publish_state(this->finalized_data_[5]);
+        if (this->input_sensors_[10]) this->input_sensors_[10]->publish_state(this->finalized_data_[3]);
+        if (this->input_sensors_[11]) this->input_sensors_[11]->publish_state(this->finalized_data_[1]);
+      }
     }
   }
 }
 
 void SatelKPD::dump_config() {
   ESP_LOGCONFIG(TAG, "Satel KPD Component:");
+  ESP_LOGCONFIG(TAG, "  Variant: %s", this->variant_ == SATEL_VARIANT_CA10 ? "CA-10" : "CA-6");
   LOG_PIN("  DATA Pin: ", this->data_pin_);
   LOG_PIN("  CKL Pin: ", this->ckl_pin_);
   if (this->has_prs_pin_) {
